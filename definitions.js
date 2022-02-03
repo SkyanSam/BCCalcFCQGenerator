@@ -57,6 +57,7 @@ function generate() {
     for(let i = 0; i < 10; i++) {
         generate_definition_of_a_derivative()
     }
+    clear_value()
     display_key()
     MathJax.typeset();
 }
@@ -68,6 +69,16 @@ function display_key() {
 function display_value() {
     for(let i = 0; i < 10; i++) {
         document.getElementById(`${i}value`).innerHTML = money(window.quiz[i][1])
+    }
+}
+function clear_key() {
+    for(let i = 0; i < 10; i++) {
+        document.getElementById(`${i}key`).innerHTML = ""
+    }
+}
+function clear_value() {
+    for(let i = 0; i < 10; i++) {
+        document.getElementById(`${i}value`).innerHTML = ""
     }
 }
 function generate_definition_of_a_derivative() {
