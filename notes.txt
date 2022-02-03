@@ -1,0 +1,8 @@
+Put x into definition of a derivative
+two questions using definition of a derivative
+	- sometimes this question specifies what x is, and therefore you must find the derivative and evaluate sin/cos/tan/etc
+two questions using derivative (d/dx)
+two questions asking you to evaluate sin/cos/tan/etc
+one-two questions with integrals
+fundemental theoreom of calculus with chain rule, (usually the last question)
+ocassionally a log rule

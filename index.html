@@ -3,20 +3,41 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>MathJax example</title>
+  <title>BC Calc FCQ Generator</title>
+  <link rel="stylesheet" href="style.css">
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script id="MathJax-script" async
-          src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js">
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
   </script>
   <script type="text/javascript" src="definitions.js"></script>
+  <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js">
+  </script>
+  
 </head>
 <body>
-<p>
-  When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
-  \[x = {-b \pm \sqrt{b^2-4ac} \over 2a}.\]
-  \[\int_{0}^{x}f\left(t\right)\left(dt\right)\]
-</p>
-<p id="element1"></p>
-<button onclick="generate()">Generate</button>
+<h1>BC Calc FCQ Generator</h1>
+<div>
+  <span><button onclick="generate()">Generate</button></span>
+  <span><button onclick="reveal()">Reveal</button></span>
+</div>
+<div><span id="0key"></span><span id="0value"></span></div>
+<div><span id="1key"></span><span id="1value"></span></div>
+<div><span id="2key"></span><span id="2value"></span></div>
+<div><span id="3key"></span><span id="3value"></span></div>
+<div><span id="4key"></span><span id="4value"></span></div>
+<div><span id="5key"></span><span id="5value"></span></div>
+<div><span id="6key"></span><span id="6value"></span></div>
+<div><span id="7key"></span><span id="7value"></span></div>
+<div><span id="8key"></span><span id="8value"></span></div>
+<div><span id="9key"></span><span id="9value"></span></div>
+
 </body>
 </html>
