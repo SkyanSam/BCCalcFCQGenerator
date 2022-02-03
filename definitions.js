@@ -55,7 +55,7 @@ function generate() {
     //document.getElementById("element1").innerHTML = string
     //console.log(MathJax)
     for(let i = 0; i < 5; i++) {
-        generate_definition_of_a_derivative()
+        generate_trig_eval()
     }
     for(let i = 0; i < 5; i++) {
         generate_ddx()
@@ -96,6 +96,33 @@ function generate_ddx() {
     let key_value = get_key_value_of_dict(getRandomInt(6), window.derivatives)
     let key = window.m_dx(key_value[0]) + "= "
     let value = key_value[1]
+    window.quiz.push([key,value])
+}
+function generate_trig_eval() {
+    let ratio = 0;
+    if (getRandomInt(2) == 0) {
+        ratio = getRandomInt(15) / 4.0
+    }
+    else {
+        ratio = getRandomInt(18) / 6.0
+    }
+    let radian = ratio * Math.PI
+    let ratioFraction = math.fraction(ratio)
+    let radianString = `\\frac{${ratioFraction.n}\\pi}{${ratioFraction.d}}`
+    let key_value = get_key_value_of_dict(getRandomInt(6), window.derivatives)
+    let key = key_value[0].replace("x", radianString) + "= "
+    let value = ""
+    switch(key_value[1]) {
+        case "cos(x)": value = math.cos(radian); break;
+        case "-sin(x)": value = -math.sin(radian); break;
+        case "sec^{2}(x)": value = math.pow(math.sec(radian), 2); break;
+        case "-csc^{2}(x)": value = -math.pow(math.csc(radian), 2); break;
+        case "sec(x)tan(x)": value = math.sec(radian) * math.tan(radian); break;
+        case "csc(x)cot(x)": value = -1 * math.csc(radian) * math.cot(radian); break;
+    }
+    value = math.fraction(value)
+    value = `\\frac{${value.n}}{${value.d}}`
+    console.log(`${key},${value}`)
     window.quiz.push([key,value])
 }
 function get_key_value_of_dict(index, dict) {
