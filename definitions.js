@@ -4,7 +4,7 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * max);
   }
 function initialize() {
-    window.m_dx = "$\\frac{d}{dx}\\$"
+    window.m_dx = function(string) { return `\\frac{d}{dx}\\${string}` }
     window.m_defOfdx = function(func) {
         //return "\\lim_{h \\rightarrow 0} \\frac{" + func("x+h") + "-" + func("x") + "}{h}";
         return `\\lim_{h \\rightarrow 0} \\frac{${func("x+h")}-${func("x")}}{h}`;
@@ -54,8 +54,11 @@ function generate() {
     //let string = money(window.m_int("0","1",`${window.m_sinx_en("x")}dt`));
     //document.getElementById("element1").innerHTML = string
     //console.log(MathJax)
-    for(let i = 0; i < 10; i++) {
+    for(let i = 0; i < 5; i++) {
         generate_definition_of_a_derivative()
+    }
+    for(let i = 0; i < 5; i++) {
+        generate_ddx()
     }
     display_key()
     MathJax.typeset();
@@ -74,6 +77,13 @@ function generate_definition_of_a_derivative() {
     console.log("generating def of a dx")
     let key_value = get_key_value_of_dict(getRandomInt(6), window.derivatives)
     let key = window.m_defOfdx(function(x) {return key_value[0].replace("x", x)}) + "= "
+    let value = key_value[1]
+    window.quiz.push([key,value])
+}
+function generate_ddx() {
+    console.log("generating dx")
+    let key_value = get_key_value_of_dict(getRandomInt(6), window.derivatives)
+    let key = window.m_dx(key_value[0]) + "= "
     let value = key_value[1]
     window.quiz.push([key,value])
 }
