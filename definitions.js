@@ -3,6 +3,22 @@
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
   }
+  function isInteger(N)
+{
+  
+    // Convert float value
+    // of N to integer
+    let X = Math.floor(N);
+    let temp2 = N - X;
+  
+    // If N is not equivalent
+    // to any integer
+    if (temp2 > 0)
+    {
+        return false;
+    }
+    return true;
+}
 function initialize() {
     window.m_dx = function(string) { return `\\frac{d}{dx}\\${string}` }
     window.m_defOfdx = function(func) {
@@ -100,18 +116,22 @@ function generate_ddx() {
 }
 function generate_trig_eval() {
     let ratio = 0;
+    let numerator = 0;
+    let denominator = 0;
     if (getRandomInt(2) == 0) {
-        ratio = getRandomInt(15) / 4.0
+        numerator = getRandomInt(15);
+        denominator = 4;
     }
     else {
-        ratio = getRandomInt(18) / 6.0
+        numerator = getRandomInt(18);
+        denominator = 6;
     }
+    ratio = numerator.toFixed(2) / denominator.toFixed(2);
     let radian = ratio * Math.PI
-    let ratioFraction = math.fraction(ratio)
-    let radianString = `\\frac{${ratioFraction.n}\\pi}{${ratioFraction.d}}`
+    let radianString = `\\frac{${numerator}\\pi}{${denominator}}`
     let key_value = get_key_value_of_dict(getRandomInt(6), window.derivatives)
     let key = key_value[0].replace("x", radianString) + "= "
-    let value = ""
+    let value = 0.000;
     switch(key_value[1]) {
         case "cos(x)": value = math.cos(radian); break;
         case "-sin(x)": value = -math.sin(radian); break;
@@ -120,10 +140,61 @@ function generate_trig_eval() {
         case "sec(x)tan(x)": value = math.sec(radian) * math.tan(radian); break;
         case "csc(x)cot(x)": value = -1 * math.csc(radian) * math.cot(radian); break;
     }
-    value = math.fraction(value)
-    value = `\\frac{${value.n}}{${value.d}}`
-    console.log(`${key},${value}`)
-    window.quiz.push([key,value])
+    let new_value = "";4
+    console.log(value.toFixed(3))
+    switch(value.toFixed(3) * 1000) 
+    {
+        case 2000:
+            new_value = "2"; 
+            break;
+        case -2000:
+            new_value = "-2"; 
+            break;
+        case 1732:
+            new_value = "\\sqrt{3}"; 
+            break;
+        case -1732:
+            new_value = "-\\sqrt{3}"; 
+            break;
+        case 1414: 
+            new_value = "\\sqrt{2}"; 
+            break;
+        case -1414: 
+            new_value = "-\\sqrt{2}"; 
+            break;
+        case 1000: 
+            new_value = "1"; 
+            break;
+        case -1000: 
+            new_value = "-1"; 
+            break;
+        case 0866: 
+            new_value = "\\frac{\\sqrt{3}}{2}"; 
+            break;
+        case -0866: 
+            new_value = -"\\frac{\\sqrt{3}}{2}"; 
+            break;
+        case 0707: 
+            new_value = "\\frac{\\sqrt{2}}{2}"; 
+            break;
+        case -0707: 
+            new_value = -"\\frac{\\sqrt{2}}{2}";
+             break;
+        case 0500: 
+            new_value = "\\frac{1}{2}"; 
+            break;
+        case -0500: 
+            new_value = "-\\frac{1}{2}"; 
+            break;
+        case 0000: 
+            new_value = "0"; 
+            break;
+        default:
+            console.log("Doesn't match any value");
+            new_value = value.toString();
+    }
+    console.log(`${key},${new_value}`)
+    window.quiz.push([key,new_value])
 }
 function get_key_value_of_dict(index, dict) {
     i = 0
